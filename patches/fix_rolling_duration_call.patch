@@ -1,0 +1,18 @@
+diff --git a/src/src/capture.cpp b/src/src/capture.cpp
+index d47a6a1..9fbbe35 100644
+--- a/src/src/capture.cpp
++++ b/src/src/capture.cpp
+@@ -17,11 +17,11 @@ Capture::Capture(rclcpp::Node::SharedPtr node, const std::string &topic_name,
+       frame_id_(frame_id),
+       buffer_size_(buffer_size),
+       info_manager_(node_.get(), frame_id),
+-      capture_delay_(rclcpp::Duration(0))
++      capture_delay_(rclcpp::Duration(std::chrono::nanoseconds(0)))
+ {
+     int dur = 0;
+     node_->get_parameter_or("capture_delay",dur,dur);
+-    this->capture_delay_ = rclcpp::Duration(dur);
++    this->capture_delay_ = rclcpp::Duration(std::chrono::nanoseconds(dur));
+ }
+ 
+ void Capture::loadCameraInfo()
